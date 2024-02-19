@@ -1,0 +1,6 @@
+@import './reset.css';
+
+.container {
+    font-family: 'Montserrat' , sans-serif;
+    max-width: 1440px;
+}
