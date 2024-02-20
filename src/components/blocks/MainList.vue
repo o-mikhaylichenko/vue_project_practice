@@ -6,61 +6,14 @@
       'container__secandary': column
       }">
       <CardProduct 
-    :horizontally="column"
-    :preview="require('@/assets/images/image_1.png')"
-    name = "Устрицы по рокфеллеровски"
-    description = "Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
-    price = "2 700"   
-    />
-    <CardProduct 
-    :horizontally="column"
-    :preview="require('@/assets/images/image_2.png')"
-    name = "Свиные ребрышки на гриле с зеленью"
-    description = "Не следует, однако забывать, что реализация намеченных плановых"
-    price = "1 600"  
-    />
-    <CardProduct 
-    :horizontally="column"
-    :preview="require('@/assets/images/image_3.png')"
-    name = "Креветки по-королевски в лимонном соке"
-    description = "Значимость этих проблем настолько очевидна, что укрепление и развитие структуры обеспечивает широкому кругу"
-    price = "1 820"  
-    />
-    <CardProduct 
-    :horizontally="column"
-    :preview="require('@/assets/images/image_1.png')"
-    name = "Устрицы по рокфеллеровски"
-    description = "Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
-    price = "2 700"  
-    />
-    <CardProduct 
-    :horizontally="column"
-    :preview="require('@/assets/images/image_1.png')"
-    name = "Устрицы по рокфеллеровски"
-    description = "Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
-    price = "2 700"  
-    />
-    <CardProduct 
-    :horizontally="column"
-    :preview="require('@/assets/images/image_2.png')"
-    name = "Свиные ребрышки на гриле с зеленью"
-    description = "Не следует, однако забывать, что реализация намеченных плановых"
-    price = "1 600"  
-    />
-    <CardProduct 
-    :horizontally="column"
-    :preview="require('@/assets/images/image_3.png')"
-    name = "Креветки по-королевски в лимонном соке"
-    description = "Значимость этих проблем настолько очевидна, что укрепление и развитие структуры обеспечивает широкому кругу"
-    price = "1 820" 
-    />
-    <CardProduct 
-    :horizontally="column"
-    :preview="require('@/assets/images/image_1.png')"
-    name = "Устрицы по рокфеллеровски"
-    description = "Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
-    price = "2 700"  
-    />
+        :horizontally="column"
+        v-for="item in listArray"
+          :key="item.id"
+          :name="item.name"
+          :description="item.description"
+          :price="item.price"
+          :preview="require(`@/assets/images/${item.image}`)"
+      />
     </div>
   </main>
 </template>
@@ -81,8 +34,13 @@ export default {
     column: {
       type: Boolean,
       default: false
+    },
+    listArray: {
+      type: Array,
+      default: () => {}
     }
   },
+ 
   setup () {
   }
 }
@@ -95,10 +53,6 @@ export default {
   height: calc(100vh - v-bind(minusHeigth));
   padding: 27px 68px 67px 70px;
   overflow: auto;
-  // display: flex;
-  // flex-wrap: wrap;
-  // row-gap: 35px;
-  // column-gap: 20px;
 
   &__wrapper {
     display: flex;
