@@ -2,5 +2,10 @@
 
 .container {
     font-family: 'Montserrat' , sans-serif;
-    max-width: 1440px;
+    margin: 0 auto;
+
+    &__secandary {
+        max-width: 992px;  
+        margin: 0 auto;
+    }
 }

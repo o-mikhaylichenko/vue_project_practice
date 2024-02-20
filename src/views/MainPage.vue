@@ -1,5 +1,5 @@
 <template>
-  <HeaderMain/>
+  <HeaderMain title="НАША ПРОДУКЦИЯ"/>
   <MainList/>
 </template>
 
@@ -21,5 +21,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+:deep(.card) {
+  width: 24%;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <button class="button">+</button>
+    <button class="button">{{ title }}</button>
   </template>
 
 <script>
@@ -9,9 +9,9 @@ export default {
   components: {
   },
   props: {
-    name: {
+    title: {
         type: String,
-        default: ''
+        default: '+'
     }
   },
   setup () {
@@ -23,13 +23,18 @@ export default {
 .button {
   width: 30px;
   height: 30px;
-  background: transparent;
+  background-color: transparent;
   border-radius: 50%;
   border: 1px solid #FFF;
   color: #FFF;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  // font-size: 22px;
+
+  &:hover {
+    background-color: #d58c51;
+    border: 1px solid #d58c51;
+  }
   }
 </style>
