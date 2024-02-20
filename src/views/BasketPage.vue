@@ -5,6 +5,7 @@
     title="КОРЗИНА С ВЫБРАННЫМИ ТОВАРАМИ"
   />
   <MainList 
+    :listArray="arrayBasket"
     column
     minusHeigth="250px"
   />
@@ -23,6 +24,8 @@
 <script>
 import HeaderMain from '@/components/blocks/HeaderMain.vue'
 import MainList from '@/components/blocks/MainList.vue'
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 
 export default {
   name: 'BacketPage',
@@ -33,6 +36,14 @@ export default {
   props: {
   },
   setup () {
+    const store = useStore()
+
+    const arrayBasket = computed(() => {
+      return store.getters.getBasketProducts
+    })
+    return {
+      arrayBasket
+    }
   }
 }
 </script>

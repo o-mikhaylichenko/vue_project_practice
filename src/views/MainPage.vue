@@ -1,11 +1,15 @@
 <template>
   <HeaderMain title="НАША ПРОДУКЦИЯ"/>
-  <MainList/>
+  <MainList
+    :listArray="arrayMain"
+    />
 </template>
 
 <script>
 import HeaderMain from '@/components/blocks/HeaderMain.vue'
 import MainList from '@/components/blocks/MainList.vue'
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 
 export default {
   name: 'MainPage',
@@ -16,6 +20,14 @@ export default {
   props: {
   },
   setup () {
+    const store = useStore()
+
+    const arrayMain = computed(() => {
+      return store.getters.getProducts
+    })
+    return {
+      arrayMain
+    }
   }
 }
 </script>
