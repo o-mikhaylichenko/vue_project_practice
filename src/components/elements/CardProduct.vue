@@ -1,13 +1,21 @@
 <template>
-    <div class="card">
+    <div :class="{
+        'card':true,
+        'card__horizontally': horizontally
+        }"
+        >
         <img :src="preview" alt="image" class="card__image">
-        <div class="card__content">
-            <h2 class="card__name">{{name}}</h2>
-            <p class="card__description">{{description}}</p>
+        <div class="card_info">
+          <h2 class="card__name">{{name}}</h2>
+          <p class="card__description" v-if="!horizontally">{{description}}</p>  
         </div>
-        <div class="card__footer">
-            <h2 class="card__price">{{`${price} ₽`}}</h2>
-            <ButtionUI />
+
+        <div :class="{
+            'card__footer': true,
+            'card__footer_horizontally': !horizontally
+        }">   
+            <p class="card__price"> {{`${price} ₽`}} </p>
+            <ButtionUI :rotate="horizontally"></ButtionUI>
         </div>
     </div>
 </template>
@@ -21,6 +29,10 @@ export default {
     ButtionUI
   },
   props: {
+    horizontally: {
+        type: Boolean,
+        default: false
+    },
     name: {
         type: String,
         default: ''
@@ -45,38 +57,76 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-    width: 312px;
-    height: 552px;
-    border: 1px solid #D58C51;
-    padding: 43px 0px 32px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: transparent;
-    color: #FFF;
-    font-size: 16px;
+    border: 1px solid #D58C51;
+    padding: 43px 0px 32px 7px;
+    font-size: 17px;
     font-weight: 500;
-    &__image {
-        width: 270px;
-        height: 271px
+    
+    &:hover {
+        color: #d58c51;
     }
-    &__content {
-        width: 264px;
+
+    :deep(button) {
+        font-size: 25px;
+    }
+
+    &__horizontally {
+        align-items: center;
+        flex-direction: row;
+        border: none;
+    
+        :deep(button) {
+            transform: rotate(45deg);
+        }
+        .card__name {
+            margin-left: 100px;
+            margin-bottom: 0; 
+        }
+
+        .card__price {
+            color: #d58c51; 
+        }
+        .card__footer {
+            margin-top: inherit;
+            margin-inline-start: auto;
+            gap: 30px;
+        }
+    }
+    &__image {
+        width: 250px;
+        height: 251px;
+        margin-bottom: 31px;
+    }
+    &__info {
         margin-top: 31px;
-        flex-direction: column;
+        flex-direction: row;
         display: flex;
+        justify-content: space-between;
         gap: 13px;
     }
     &__description {
-        font-size: 14px;
-        font-weight: 400;
+         font-size: 14px;
+         font-weight: 400;
+         margin-top: 31px;
+         margin-bottom: 31px;
     }
     &__footer {
-        width: 270px;
-        margin-top: auto;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-top: auto;
+    }
+    &__footer_horizontally {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; 
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+        gap: 30px;
     }
 }
 </style>
