@@ -7,12 +7,13 @@
       }">
       <CardProduct 
         :horizontally="column"
-        v-for="item in listArray"
-          :key="item.id"
+        v-for="(item, i) in listArray"
+          :key="i"
           :name="item.name"
           :description="item.description"
           :price="item.price"
-          :preview="require(`@/assets/images/${item.image}`)"
+          :preview="item.image"
+          @clickCardButton="$emit('clickCard',item)"
       />
     </div>
   </main>
@@ -29,7 +30,7 @@ export default {
   props: {
     minusHeigth: {
       type: String,
-      default: '176px'
+      default: '255px'
     },
     column: {
       type: Boolean,
@@ -63,6 +64,9 @@ export default {
     &_column {
       flex-direction: column;
     }
+  }
+  .container__secandary {
+    width: 850px; 
   }
   }
 </style>

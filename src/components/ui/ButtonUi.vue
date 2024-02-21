@@ -31,6 +31,7 @@ export default {
   align-items: center;
   justify-content: center;
   // font-size: 22px;
+  cursor: pointer;
 
   &:hover {
     background-color: #d58c51;

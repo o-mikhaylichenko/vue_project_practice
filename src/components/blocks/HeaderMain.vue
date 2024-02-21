@@ -12,8 +12,8 @@
       <h1 class="header__title">{{ title }}</h1>   
       <div class="header__right">
         <div class="header__info">
-          <p class="header__text" v-if="!isBasket">3 товара</p>
-          <p class="header__text" v-if="!isBasket">на сумму 3 500 ₽</p>
+          <p class="header__text" v-if="!isBasket">{{ countBasket }} товара</p>
+          <p class="header__text" v-if="!isBasket">на сумму {{ priceInBasket }} ₽</p>
         </div>
         <router-link to="/about" v-if="!isBasket">
           <basketIcon />
@@ -26,6 +26,8 @@
 <script>
 import basketIcon from '@/components/icons/basketIcon.vue'
 import ButtionUI from '@/components/ui/ButtonUi.vue'
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 
 export default {
   name: 'HeaderMain',
@@ -48,6 +50,20 @@ export default {
     }
   },
   setup() {
+    const store = useStore()
+
+    const countBasket = computed(() => {
+      return store.getters.getCountProductsInBasket
+    })
+    
+    const priceInBasket = computed(() => {
+      return store.getters.getAllPricePoductsInBasket
+    })
+  
+    return {
+      countBasket,
+      priceInBasket
+    }
   }
 }
 </script>
