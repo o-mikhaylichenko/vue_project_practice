@@ -2,12 +2,14 @@
   <HeaderMain title="НАША ПРОДУКЦИЯ"/>
   <MainList
     :listArray="arrayMain"
+    @clickCard="clickCard"
     />
 </template>
 
 <script>
 import HeaderMain from '@/components/blocks/HeaderMain.vue'
 import MainList from '@/components/blocks/MainList.vue'
+
 import { useStore } from 'vuex'
 import { computed } from 'vue'
 
@@ -25,8 +27,15 @@ export default {
     const arrayMain = computed(() => {
       return store.getters.getProducts
     })
+
+    const clickCard = (item) => {
+      console.log('item ',item);
+      store.commit('SetbasketProducts', item.id)
+    }
+
     return {
-      arrayMain
+      arrayMain,
+      clickCard
     }
   }
 }

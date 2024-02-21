@@ -15,7 +15,9 @@
             'card__footer_horizontally': !horizontally
         }">   
             <p class="card__price"> {{`${price} ₽`}} </p>
-            <ButtionUI :rotate="horizontally"></ButtionUI>
+            <ButtionUI @click="$emit('clickCardButton')"
+            :rotate="horizontally" 
+            />
         </div>
     </div>
 </template>
@@ -61,7 +63,7 @@ export default {
     flex-direction: column;
     align-items: center;
     border: 1px solid #D58C51;
-    padding: 43px 0px 32px 7px;
+    padding: 20px 5px;
     font-size: 17px;
     font-weight: 500;
     
@@ -77,6 +79,7 @@ export default {
         align-items: center;
         flex-direction: row;
         border: none;
+        height: 100px;
     
         :deep(button) {
             transform: rotate(45deg);
@@ -93,6 +96,11 @@ export default {
             margin-top: inherit;
             margin-inline-start: auto;
             gap: 30px;
+        }
+
+        .card__image {
+           width: 122px;
+           height: 122px;
         }
     }
     &__image {

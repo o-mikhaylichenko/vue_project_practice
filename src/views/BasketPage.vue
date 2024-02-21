@@ -6,6 +6,7 @@
   />
   <MainList 
     :listArray="arrayBasket"
+    @clickCard="clickCard"
     column
     minusHeigth="250px"
   />
@@ -14,7 +15,7 @@
     <div class="footer__total">
         <div class="footer__info">
             <span>ЗАКАЗ НА СУММУ:</span>
-            <span class="footer__amount">6 220 ₽</span>
+            <span class="footer__amount">{{ priceInBasket }} ₽</span>
         </div>
         <button class="basket__button">Оформить заказ</button>
     </div>
@@ -41,8 +42,19 @@ export default {
     const arrayBasket = computed(() => {
       return store.getters.getBasketProducts
     })
+
+    const priceInBasket = computed(() => {
+      return store.getters.getAllPricePoductsInBasket
+    })
+
+    const clickCard = (item) => {
+      store.commit('SetBasketRemoveItem', item.idx)
+    }
+
     return {
-      arrayBasket
+      arrayBasket,
+      priceInBasket,
+      clickCard
     }
   }
 }
