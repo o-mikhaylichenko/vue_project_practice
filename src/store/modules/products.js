@@ -66,13 +66,15 @@ export default {
       ],
       basketProducts: [],
       countProductsInBasket: 0,
-      allPricePoductsInBasket: 0
+      allPricePoductsInBasket: 0,
+      productDescription: null
     },
     getters: {
       getProducts: state => state.products,
       getBasketProducts: state => state.basketProducts,
       getCountProductsInBasket: state => state.countProductsInBasket,
-      getAllPricePoductsInBasket: state => state.allPricePoductsInBasket
+      getAllPricePoductsInBasket: state => state.allPricePoductsInBasket,
+      getProductDescription: state => state.productDescription
     },
     mutations: {
       SetbasketProducts (state, val) {
@@ -93,13 +95,17 @@ export default {
         state.allPricePoductsInBasket = state.basketProducts.reduce((sum, item) => sum + item.price, 0)
       },
       SetBasketRemoveItem (state, val) {
-        console.log('val: ',val);
         state.basketProducts = state.basketProducts.filter(item => {
           return item.idx !== val
         })
 
         state.countProductsInBasket = state.basketProducts.length
         state.allPricePoductsInBasket = state.basketProducts.reduce((sum, item) => sum + item.price, 0)
+      },
+      SetProductDescription (state, val) {
+        state.productDescription = state.products.find(element => {
+          return element.id === +val
+        })
       }
     },
     actions: {

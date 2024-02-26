@@ -8,14 +8,14 @@
     :listArray="arrayBasket"
     @clickCard="clickCard"
     column
-    minusHeigth="250px"
+    minusHeigth="255px"
   />
   <hr class="basket__line">
   <footer class="container footer">
     <div class="footer__total">
         <div class="footer__info">
-            <span>ЗАКАЗ НА СУММУ:</span>
-            <span class="footer__amount">{{ priceInBasket }} ₽</span>
+            <h2>ЗАКАЗ НА СУММУ:</h2>
+            <p class="footer__amount">{{ priceInBasket.toLocaleString() }} ₽</p>
         </div>
         <button class="basket__button">Оформить заказ</button>
     </div>
