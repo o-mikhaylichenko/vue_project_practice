@@ -10,51 +10,58 @@
 
         <h2 class="form__title"> {{ title }} </h2>
 
-        <input 
-          class="form__input"
-          type="text" 
-          placeholder="Логин"
-          v-model="loginValue"
-        >
+        <div class="form__input">
+          <input 
+            class="form__input__field"
+            type="text" 
+            placeholder="Логин"
+            v-model="loginValue"
+          >
 
-        <span class="form__input__error"> {{ errorLogin }} </span> 
+          <span class="form__input__error"> {{ errorLogin }} </span> 
 
-        <input
-          class="form__input"
-          type="password"
-          placeholder="Пароль"
-          v-model="passwordValue"
-        >
+          <input
+            class="form__input__field"
+            type="password"
+            placeholder="Пароль"
+            v-model="passwordValue"
+          >
 
-        <span class="form__input__error"> {{ errorPassword }} </span>
+          <span class="form__input__error"> {{ errorPassword }} </span>
         
-        <div class="form__checkbox" v-if="!isAuthToogle">
-          <input type="checkbox" id="checkbox"
-          v-model="checkValue">
-          <label for="checkbox"> 
-            Я согласен получать обновления на почту
-          </label>
+          <div class="form__checkbox" v-if="!isAuthToogle">
+            <input type="checkbox" id="checkbox"
+            v-model="checkValue">
+            <label for="checkbox"> 
+              Я согласен получать обновления на почту
+            </label>
+          </div>
         </div>
 
         <span class="form__input__error__center"> {{ isErrorUsersInfo }} </span>
-
-        <button @click="clickForm"> {{ buttonName }} </button>
+        <ButtonAuth 
+          :title="buttonName"
+          buttonAddInBasket 
+          @click.stop="clickForm"
+         />
     </form>
   </main>
 </template>
 
 <script>
+import ButtonAuth from '@/components/ui/ButtonExitUi.vue'
 import { ref } from 'vue'
-// import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'AuthPage',
   components: {
+    ButtonAuth
   },
   props: {
   },
   setup () {
-    // const router = useRouter()
+     const router = useRouter()
 
     const title = ref('ВХОД')
     const toogleName = ref('Зарегистрироваться')
@@ -69,6 +76,9 @@ export default {
 
 
     const toogleForm = () => {
+       errorLogin.value = ''
+       errorPassword.value = ''
+       isErrorUsersInfo.value = ''
 
         if (isAuthToogle.value) {
             title.value = 'РЕГИСТРАЦИЯ'
@@ -141,8 +151,8 @@ export default {
          const users = JSON.parse(localStorage.getItem('users'))
 
          const isCheckAuth = users.some(item => {
-            return item.login ===loginValue.value
-         })
+          return item.login === loginValue.value
+        })
 
          if (!isCheckAuth) {
            users.push({
@@ -192,7 +202,6 @@ export default {
     justify-content: center;
     flex-direction: column;
     position: relative;
-    width: 450px;
     border: 2px solid #D58C51;
     background: #fff;
     gap: 25px;
@@ -200,7 +209,6 @@ export default {
     font-family: 'Montserrat';
 
     &__toogle {
-      //position: absolute;
       margin-left: auto;
       font-size: 11px;
       font-weight: 300;
@@ -211,42 +219,43 @@ export default {
     }
 
     &__title {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      text-align: center;
       font-size: 31px;
       font-weight: 700;
       line-height: 38px;
     }
 
     &__input {
-        width: 430px;
-      height: 39px;
-      border-radius: 61px;
-      border: 1px solid #D58C51;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 20px;
-      //letter-spacing: 0em;
-      color: #161516;
-      padding: 0px 10px 0px 10px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+
+      &__field {
+        width: 420px;
+        height: 39px;
+        border-radius: 61px;
+        border: 1px solid #D58C51;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 20px;
+        color: #161516;
+        padding: 0px 10px 0px 10px;
+      }
     }
 
     &__checkbox {
       display: flex;
       align-items: center;
       border-radius: 50%;
-      vertical-align: middle;
-      //border: 1px solid #D58C51;
-      //appearance: none;
-      //-webkit-appearance: none;
-      outline: none;
       cursor: pointer;
       background-color: #fff;
       font-size: 11px;
       font-weight: 300;
       line-height: 13px;
       gap: 3px;
+      position: absolute;
+      bottom: 125px;
       &:checked {
           appearance: auto;
           clip-path: circle(50% at 50% 50%);
@@ -259,6 +268,7 @@ export default {
       color: #FF0B0B;
       align-self: self-start;
       margin-left: 20px;
+      margin-top: 5px;
       height: 15px;
     }
 
@@ -266,13 +276,15 @@ export default {
       font-size: 10px;
       font-weight: 300;
       color: #FF0B0B;
-    //  align-self: self-start;
-      margin-left: 20px;
       height: 15px;
-      margin-top: -22px;
-      margin-bottom: -22px;
-      margin-left: 0px;
-      align-self: auto;
+     // margin-bottom: -55px;
+      text-align: center;
+    }
+
+    :deep(.buttonAdd) {
+    display: block;
+    margin: 0 auto;
     }
 }
 </style>
+  

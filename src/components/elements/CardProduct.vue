@@ -6,7 +6,7 @@
         @click="router.push(`/description/${id}`)"
         >
         <img :src="preview" alt="image" class="card__image">
-        <div class="card_info">
+        <div class="card__info">
           <h2 class="card__name">{{name}}</h2>
           <p class="card__description" v-if="!horizontally">{{description}}</p>  
         </div>
@@ -95,6 +95,10 @@ export default {
         :deep(button) {
             transform: rotate(45deg);
         }
+
+        .card__info {
+            margin-top: 0;
+        }
         .card__name {
             margin-left: 100px;
             margin-bottom: 0; 
@@ -114,29 +118,35 @@ export default {
            height: 122px;
         }
     }
+
     &__image {
         width: 270px;
         height: 271px;
     }
+
     &__info {
         margin-top: 31px;
         flex-direction: row;
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
         gap: 13px;
     }
+
     &__description {
          font-size: 14px;
          font-weight: 400;
          margin-top: 13px;
          margin-bottom: 31px; 
     }
+
     &__footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-top: auto;
     }
+
     &__footer_horizontally {
         display: flex;
         justify-content: space-between;

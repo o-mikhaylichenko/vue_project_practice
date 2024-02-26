@@ -8,13 +8,13 @@
     :listArray="arrayBasket"
     @clickCard="clickCard"
     column
-    minusHeigth="255px"
+    minusHeigth="242px"
   />
   <hr class="basket__line">
-  <footer class="container footer">
+  <footer class="container__secandary footer">
     <div class="footer__total">
         <div class="footer__info">
-            <h2>ЗАКАЗ НА СУММУ:</h2>
+            <h2 class="footer__text">ЗАКАЗ НА СУММУ:</h2>
             <p class="footer__amount">{{ priceInBasket.toLocaleString() }} ₽</p>
         </div>
         <button class="basket__button">Оформить заказ</button>
@@ -63,30 +63,34 @@ export default {
 <style lang="scss" scoped>
 
 .footer {
-        background-color: #161516;
-        padding: 20px 0px 27px 0px;
-        color: #ffffff;
-        display: flex;
-        justify-content: center;
-        &__total {
-            width: 895px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        &__info {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-            font-size: 21px;
-            font-weight: 400;
-        }
-        &__amount {
-            color: #d58c51;
-            font-size: 18px;
-            font-weight: 400;
-        }
-    }
+  background-color: #161516;
+  padding: 20px 0px 27px 0px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+
+  &__total {
+    width: 895px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__info {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font-size: 21px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+  }
+
+  &__amount {
+    color: #d58c51;
+    font-size: 18px;
+    font-weight: 400;
+  }
+}
 
 .basket__line {
   margin: 0;
