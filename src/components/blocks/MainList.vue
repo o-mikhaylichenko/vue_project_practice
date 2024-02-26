@@ -2,13 +2,14 @@
   <main class="main">
     <div :class="{
       'container main__wrapper': true,
-      'main__wrapper_column': column,
+      'main__wrapper__column': column,
       'container__secandary': column
       }">
       <CardProduct 
         :horizontally="column"
         v-for="(item, i) in listArray"
           :key="i"
+          :id="item.id"
           :name="item.name"
           :description="item.description"
           :price="item.price"
@@ -49,11 +50,12 @@ export default {
 
 <style lang="scss" scoped>
 .main {
-  background: #161516;
+  background-color: #161516;
   color: #ffffff;
   height: calc(100vh - v-bind(minusHeigth));
-  padding: 27px 68px 67px 70px;
+  padding: 0px 70px 90px 70px;
   overflow: auto;
+  scrollbar-width: none;
 
   &__wrapper {
     display: flex;
@@ -61,12 +63,14 @@ export default {
     justify-content: space-between;
     gap: 35px 0;
 
-    &_column {
+    &__column {
       flex-direction: column;
     }
   }
+
   .container__secandary {
-    width: 850px; 
+    width: 900px; 
   }
+
   }
 </style>

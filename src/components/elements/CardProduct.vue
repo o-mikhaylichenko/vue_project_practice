@@ -3,6 +3,7 @@
         'card':true,
         'card__horizontally': horizontally
         }"
+        @click="router.push(`/description/${id}`)"
         >
         <img :src="preview" alt="image" class="card__image">
         <div class="card_info">
@@ -14,8 +15,8 @@
             'card__footer': true,
             'card__footer_horizontally': !horizontally
         }">   
-            <p class="card__price"> {{`${price} ₽`}} </p>
-            <ButtionUI @click="$emit('clickCardButton')"
+            <p class="card__price"> {{`${price.toLocaleString()} ₽`}} </p>
+            <ButtionUI @click.stop="$emit('clickCardButton')"
             :rotate="horizontally" 
             />
         </div>
@@ -23,6 +24,7 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router'
 import ButtionUI from '@/components/ui/ButtonUi.vue'
 
 export default {
@@ -34,6 +36,10 @@ export default {
     horizontally: {
         type: Boolean,
         default: false
+    },
+    id:{
+        type: Number,
+        default: 0
     },
     name: {
         type: String,
@@ -53,6 +59,11 @@ export default {
     }
   },
   setup () {
+    const router = useRouter()
+
+    return{
+        router
+    }
   }
 }
 </script>
@@ -63,7 +74,7 @@ export default {
     flex-direction: column;
     align-items: center;
     border: 1px solid #D58C51;
-    padding: 20px 5px;
+    padding: 43px 20px 35px 20px;
     font-size: 17px;
     font-weight: 500;
     
@@ -79,7 +90,7 @@ export default {
         align-items: center;
         flex-direction: row;
         border: none;
-        height: 100px;
+        height: 70px;
     
         :deep(button) {
             transform: rotate(45deg);
@@ -104,9 +115,8 @@ export default {
         }
     }
     &__image {
-        width: 250px;
-        height: 251px;
-        margin-bottom: 31px;
+        width: 270px;
+        height: 271px;
     }
     &__info {
         margin-top: 31px;
@@ -118,8 +128,8 @@ export default {
     &__description {
          font-size: 14px;
          font-weight: 400;
-         margin-top: 31px;
-         margin-bottom: 31px;
+         margin-top: 13px;
+         margin-bottom: 31px; 
     }
     &__footer {
         display: flex;
@@ -132,7 +142,6 @@ export default {
         justify-content: space-between;
         align-items: center; 
         width: 100%;
-        padding: 0 10px;
         box-sizing: border-box;
         gap: 30px;
     }

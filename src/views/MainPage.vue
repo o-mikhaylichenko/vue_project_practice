@@ -29,7 +29,6 @@ export default {
     })
 
     const clickCard = (item) => {
-      console.log('item ',item);
       store.commit('SetbasketProducts', item.id)
     }
 
@@ -43,6 +42,7 @@ export default {
 
 <style lang="scss" scoped>
 :deep(.card) {
-  width: 24%;
+  width: 20%;
+  min-width: min-content;
 }
 </style>

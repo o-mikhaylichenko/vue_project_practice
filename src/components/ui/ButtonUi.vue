@@ -25,8 +25,8 @@ export default {
   height: 30px;
   background-color: transparent;
   border-radius: 50%;
-  border: 1px solid #FFF;
-  color: #FFF;
+  border: 1px solid #d58c51;
+  color: #d58c51;
   display: flex;
   align-items: center;
   justify-content: center;
