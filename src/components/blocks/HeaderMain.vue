@@ -19,7 +19,7 @@
         <router-link to="/basket" v-if="!isBasket">
           <basketIcon />
         </router-link>
-        <ButtonExitUi title="Выйти"/>
+        <ButtonExitUi title="Выйти" @click.stop="clickExitAuth"/>
     </div> 
     </div>
   </header>
@@ -70,10 +70,16 @@ export default {
       return store.getters.getAllPricePoductsInBasket
     })
   
+    const clickExitAuth = () => {
+      localStorage.setItem('isAuth', JSON.stringify(false))
+      router.push('/auth')
+    }
+    
     return {
       countBasket,
       priceInBasket,
-      router
+      router,
+      clickExitAuth
     }
   }
 }

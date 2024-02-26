@@ -10,7 +10,11 @@
         <p class="main__description">{{product.description}}</p>  
         <div class="main__info__footer">
           <span class="main__price">{{ product.price.toLocaleString() }} ₽</span>
-          <ButtonExitUi title="В корзину" buttonAddInBasket @click="AddInBasket()"/>
+          <ButtonExitUi 
+            title="В корзину" 
+            buttonAddInBasket 
+            @click="AddInBasket()"
+          />
         </div>
       </div>
     </div>

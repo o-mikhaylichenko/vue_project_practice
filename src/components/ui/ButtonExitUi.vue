@@ -44,15 +44,15 @@ export default {
     color: #161516;
   }
   }
-  .buttonAdd {
-    width: 200px;
-    height: 42px;
-    background-color: #d58c51;
-    color: #161516;
+.buttonAdd {
+  width: 200px;
+  height: 42px;
+  background-color: #d58c51;
+  color: #161516;
 
-    &:hover {
+  &:hover {
     background-color: transparent;
     color: #d58c51;
   }
-  }
+}
 </style>

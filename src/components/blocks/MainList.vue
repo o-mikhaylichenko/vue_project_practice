@@ -31,7 +31,7 @@ export default {
   props: {
     minusHeigth: {
       type: String,
-      default: '255px'
+      default: '163px'
     },
     column: {
       type: Boolean,
@@ -50,10 +50,13 @@ export default {
 
 <style lang="scss" scoped>
 .main {
+  //  display: flex;
+  //  justify-content: center;
+  // align-items: flex-start;
   background-color: #161516;
   color: #ffffff;
   height: calc(100vh - v-bind(minusHeigth));
-  padding: 0px 70px 90px 70px;
+  padding: 0px 70px;
   overflow: auto;
   scrollbar-width: none;
 
